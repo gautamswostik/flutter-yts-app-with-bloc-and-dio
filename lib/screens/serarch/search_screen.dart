@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:yts_bloc_2021/bloc/search/search_bloc.dart';
 import 'package:yts_bloc_2021/screens/movie_details_screen/details_creen.dart';
 import 'package:yts_bloc_2021/utils/app_color.dart';
@@ -70,6 +71,25 @@ class _SearchScreenState extends State<SearchScreen> {
       body: BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
         if (state is SearchInitial) {
           return const CustomEmptyView();
+        }
+        if (state is SearchLoading) {
+          return Center(
+            child: AlertDialog(
+              title: Row(
+                children: [
+                  const CircularProgressIndicator(
+                    color: Colors.green,
+                    // lineWidth: 4.0,
+                  ),
+                  const SizedBox(width: 20),
+                  Text(
+                    state.message,
+                    style: GoogleFonts.nunito(),
+                  )
+                ],
+              ),
+            ),
+          );
         }
         if (state is SearchLoaded) {
           if (state.moviesCollection.data!.movieCount == 0) {

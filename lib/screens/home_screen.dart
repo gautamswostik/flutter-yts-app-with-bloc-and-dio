@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yts_bloc_2021/bloc/movie_suggestions/moviesuggestions_bloc.dart';
 import 'package:yts_bloc_2021/bloc/movies/movies_bloc.dart';
+import 'package:yts_bloc_2021/bloc/search/search_bloc.dart';
 import 'package:yts_bloc_2021/screens/movies_screen/movies_screen.dart';
 import 'package:yts_bloc_2021/screens/serarch/search_screen.dart';
 import 'package:yts_bloc_2021/utils/app_color.dart';
@@ -44,6 +45,7 @@ class _HomeScerenState extends State<HomeSceren> {
                   builder: (context) => const SearchScreen(),
                 ),
               );
+              BlocProvider.of<SearchBloc>(context).add(SearchInitialEvent());
             },
             icon: const Icon(
               Icons.search,

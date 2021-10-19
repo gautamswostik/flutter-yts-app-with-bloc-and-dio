@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CustomEmptyView extends StatelessWidget {
+class CustomEmptyMovieView extends StatelessWidget {
   ///
 
-  const CustomEmptyView({
+  const CustomEmptyMovieView({
     Key? key,
   }) : super(key: key);
 
@@ -27,7 +27,7 @@ class CustomEmptyView extends StatelessWidget {
             height: 30,
           ),
           Text(
-            'No Movies to show just yet.',
+            'Movie not found',
             textAlign: TextAlign.center,
             style: GoogleFonts.nunito(
               color: Colors.white,
@@ -37,14 +37,6 @@ class CustomEmptyView extends StatelessWidget {
           ),
           const SizedBox(
             height: 10,
-          ),
-          Text(
-            'When there are available Movies, it will be listed here.',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.nunito(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
           ),
         ],
       ),

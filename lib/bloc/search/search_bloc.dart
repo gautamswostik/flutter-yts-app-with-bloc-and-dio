@@ -16,6 +16,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       },
     );
 
+    on<SearchInitialEvent>(
+      (event, emit) =>
+          emit(const SearchInitial(initialMessage: 'Searching ...')),
+    );
+
     on<SearchMovieEvent>(
       (event, emit) async {
         final service = MovieRepository(Dio());

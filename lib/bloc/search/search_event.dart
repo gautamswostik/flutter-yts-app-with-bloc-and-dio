@@ -7,6 +7,8 @@ abstract class SearchEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class SearchInitialEvent extends SearchEvent {}
+
 class SearchMovieEvent extends SearchEvent {
   final String movieName;
 

@@ -31,7 +31,9 @@ class CustomErrorView extends StatelessWidget {
           ),
           Text(
             errorMessage,
+            textAlign: TextAlign.center,
             style: GoogleFonts.nunito(
+              
               color: Colors.white,
               fontSize: 22,
               fontWeight: FontWeight.bold,

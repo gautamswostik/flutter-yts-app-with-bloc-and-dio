@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.yts_bloc_2021">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="yts_bloc_2021"
         android:icon="@mipmap/ic_launcher">

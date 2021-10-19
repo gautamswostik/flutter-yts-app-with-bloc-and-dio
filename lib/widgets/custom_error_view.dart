@@ -17,23 +17,10 @@ class CustomErrorView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CircleAvatar(
-            backgroundColor: Colors.black,
-            radius: 50,
-            child: Icon(
-              Icons.error,
-              color: Colors.white,
-              size: 63,
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
           Text(
             errorMessage,
             textAlign: TextAlign.center,
             style: GoogleFonts.nunito(
-              
               color: Colors.white,
               fontSize: 22,
               fontWeight: FontWeight.bold,

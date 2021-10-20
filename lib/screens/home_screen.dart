@@ -28,35 +28,7 @@ class _HomeScerenState extends State<HomeSceren> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       backgroundColor: AppColor.mainColor,
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/yts.png',
-          height: 100,
-          width: 100,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SearchScreen(),
-                ),
-              );
-              BlocProvider.of<SearchBloc>(context).add(SearchInitialEvent());
-            },
-            icon: const Icon(
-              Icons.search,
-              color: Colors.green,
-            ),
-          ),
-        ],
-        elevation: 0.0,
-        backgroundColor: AppColor.mainColor,
-        centerTitle: true,
-      ),
       body: BlocBuilder<MoviesBloc, MoviesState>(
         builder: (context, state) {
           if (state is MoviesInitial) {
@@ -96,5 +68,73 @@ class _HomeScerenState extends State<HomeSceren> {
         },
       ),
     );
+
+    // Scaffold(
+
+    // body:
+    //   ),
+    // );
   }
 }
+
+///////
+//! You can use bloc consumer instead of builder to show some extra shits whem the state ore evnet is called
+// BlocConsumer<BeerBloc, BeerState>(
+//         listener: (context, beerState) {
+//           if (beerState is BeerLoadingState) {
+//             Scaffold.of(context)
+//                 .showSnackBar(SnackBar(content: Text(beerState.message)));
+//           } else if (beerState is BeerSuccessState && beerState.beers.isEmpty) {
+//             Scaffold.of(context)
+//                 .showSnackBar(SnackBar(content: Text('No more beers')));
+//           } else if (beerState is BeerErrorState) {
+//             Scaffold.of(context)
+//                 .showSnackBar(SnackBar(content: Text(beerState.error)));
+//             context.bloc<BeerBloc>().isFetching = false;
+//           }
+//           return;
+//         },
+//         builder: (context, beerState) {
+//           if (beerState is BeerInitialState ||
+//               beerState is BeerLoadingState && _beers.isEmpty) {
+//             return CircularProgressIndicator();
+//           } else if (beerState is BeerSuccessState) {
+//             _beers.addAll(beerState.beers);
+//             context.bloc<BeerBloc>().isFetching = false;
+//             Scaffold.of(context).hideCurrentSnackBar();
+//           } else if (beerState is BeerErrorState && _beers.isEmpty) {
+//             return Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: [
+//                 IconButton(
+//                   onPressed: () {
+//                     context.bloc<BeerBloc>()
+//                       ..isFetching = true
+//                       ..add(BeerFetchEvent());
+//                   },
+//                   icon: Icon(Icons.refresh),
+//                 ),
+//                 const SizedBox(height: 15),
+//                 Text(beerState.error, textAlign: TextAlign.center),
+//               ],
+//             );
+//           }
+//           return ListView.separated(
+//             controller: _scrollController
+//               ..addListener(() {
+//                 if (_scrollController.offset ==
+//                         _scrollController.position.maxScrollExtent &&
+//                     !context.bloc<BeerBloc>().isFetching) {
+//                   context.bloc<BeerBloc>()
+//                     ..isFetching = true
+//                     ..add(BeerFetchEvent());
+//                 }
+//               }),
+//             itemBuilder: (context, index) => BeerListItem(_beers[index]),
+//             separatorBuilder: (context, index) => const SizedBox(height: 20),
+//             itemCount: _beers.length,
+//           );
+//         },
+//       ),
+//     );

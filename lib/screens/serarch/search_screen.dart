@@ -17,6 +17,14 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +38,10 @@ class _SearchScreenState extends State<SearchScreen> {
           onFieldSubmitted: (changed) {
             BlocProvider.of<SearchBloc>(context)
                 .add(SearchMovieEvent(movieName: changed));
+
+            setState(() {
+              _controller.text = changed;
+            });
           },
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -152,6 +164,15 @@ class _SearchScreenState extends State<SearchScreen> {
               },
             );
           }
+        }
+        if (state is SearchError) {
+          return CustomErrorView(
+            retryFunction: (BuildContext context) {
+              BlocProvider.of<SearchBloc>(context)
+                  .add(SearchMovieEvent(movieName: _controller.text));
+            },
+            errorMessage: state.failure.reason,
+          );
         }
         return const SizedBox();
       }),

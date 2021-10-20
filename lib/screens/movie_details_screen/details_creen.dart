@@ -106,78 +106,69 @@ class _MoviesDetailState extends State<MoviesDetail> {
                   controller: _controller,
                   aspectRatio: 16 / 9,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "Genres".toUpperCase(),
-                      style: GoogleFonts.nunito(
-                        color: Colors.green,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const Icon(
-                      Icons.arrow_right_sharp,
-                      size: 40,
-                      color: Colors.green,
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
                 widget.movies.genres.isEmpty
-                    ? Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black45),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(25)),
-                          color: Colors.white,
-                        ),
-                        child: Text(
-                          'Not Available'.toUpperCase(),
-                          style: GoogleFonts.nunito(
-                            color: AppColor.mainColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      )
-                    : SizedBox(
-                        height: 45,
-                        child: ListView.separated(
-                          separatorBuilder: (BuildContext context, int index) =>
-                              const VerticalDivider(
-                            color: Colors.transparent,
-                            width: 5,
-                          ),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: widget.movies.genres.length,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black45),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(25)),
-                                    color: Colors.white,
-                                  ),
-                                  child: Text(
-                                    widget.movies.genres[index].toUpperCase(),
-                                    style: GoogleFonts.nunito(
-                                      color: AppColor.mainColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                    ? const SizedBox()
+                    : Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Genres".toUpperCase(),
+                                style: GoogleFonts.nunito(
+                                  color: Colors.green,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              ],
-                            );
-                          },
-                        ),
+                              ),
+                              const Icon(
+                                Icons.arrow_right_sharp,
+                                size: 40,
+                                color: Colors.green,
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            height: 45,
+                            child: ListView.separated(
+                              separatorBuilder:
+                                  (BuildContext context, int index) =>
+                                      const VerticalDivider(
+                                color: Colors.transparent,
+                                width: 5,
+                              ),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: widget.movies.genres.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        border:
+                                            Border.all(color: Colors.black45),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(25)),
+                                        color: Colors.white,
+                                      ),
+                                      child: Text(
+                                        widget.movies.genres[index]
+                                            .toUpperCase(),
+                                        style: GoogleFonts.nunito(
+                                          color: AppColor.mainColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                 const SizedBox(
                   height: 10,

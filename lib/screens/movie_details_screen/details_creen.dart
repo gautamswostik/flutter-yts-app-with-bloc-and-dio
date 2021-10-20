@@ -32,7 +32,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
         showControls: true,
         desktopMode: false,
         privacyEnhanced: true,
-        useHybridComposition: true,
+        useHybridComposition: false,
       ),
     );
   }
@@ -138,7 +138,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
                         child: Text(
                           'Not Available'.toUpperCase(),
                           style: GoogleFonts.nunito(
-                            color: Colors.green,
+                            color: AppColor.mainColor,
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),
@@ -168,7 +168,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
                                   child: Text(
                                     widget.movies.genres[index].toUpperCase(),
                                     style: GoogleFonts.nunito(
-                                      color: Colors.black,
+                                      color: AppColor.mainColor,
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -182,37 +182,43 @@ class _MoviesDetailState extends State<MoviesDetail> {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "Description".toUpperCase(),
-                      style: GoogleFonts.nunito(
-                        color: Colors.green,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const Icon(
-                      Icons.arrow_right_sharp,
-                      size: 40,
-                      color: Colors.green,
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  widget.movies.descriptionFull,
-                  style: GoogleFonts.nunito(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+                widget.movies.descriptionFull.isNotEmpty
+                    ? Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Description".toUpperCase(),
+                                style: GoogleFonts.nunito(
+                                  color: Colors.green,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Icon(
+                                Icons.arrow_right_sharp,
+                                size: 40,
+                                color: Colors.green,
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            widget.movies.descriptionFull,
+                            style: GoogleFonts.nunito(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
                 Row(
                   children: [
                     Text(

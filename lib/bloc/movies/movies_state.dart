@@ -26,12 +26,19 @@ class MoviesLoaded extends MoviesState {
 }
 
 class MoviesPaginate extends MoviesState {
-  final MoviesCollection moviesCollection;
+  final List<Movies> moviesCollection;
 
   const MoviesPaginate(this.moviesCollection);
 
   @override
   List<Object> get props => [moviesCollection];
+}
+
+class PaginationLoading extends MoviesState {
+  const PaginationLoading();
+
+  @override
+  List<Object> get props => [];
 }
 
 class MoviesError extends MoviesState {

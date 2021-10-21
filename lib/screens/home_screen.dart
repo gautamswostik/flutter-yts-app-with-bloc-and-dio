@@ -17,7 +17,10 @@ class HomeSceren extends StatefulWidget {
 class _HomeScerenState extends State<HomeSceren> {
   @override
   void initState() {
-    BlocProvider.of<MoviesBloc>(context).add(const MoviesInitialEvent());
+    BlocProvider.of<MoviesBloc>(context).add(const MoviesInitialEvent(
+      hadReachedMax: false,
+      page: 1,
+    ));
     BlocProvider.of<MoviesuggestionsBloc>(context)
         .add(const MoviesSuggestionInitialEvent());
     super.initState();
@@ -55,7 +58,10 @@ class _HomeScerenState extends State<HomeSceren> {
             return CustomErrorView(
               retryFunction: (BuildContext context) {
                 BlocProvider.of<MoviesBloc>(context)
-                    .add(const MoviesInitialEvent());
+                    .add(const MoviesInitialEvent(
+                  hadReachedMax: false,
+                  page: 1,
+                ));
                 BlocProvider.of<MoviesuggestionsBloc>(context)
                     .add(const MoviesSuggestionInitialEvent());
               },

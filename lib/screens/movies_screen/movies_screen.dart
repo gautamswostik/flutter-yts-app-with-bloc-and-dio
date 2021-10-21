@@ -24,6 +24,25 @@ class MoviesScreen extends StatefulWidget {
 
 class _MoviesScreenState extends State<MoviesScreen> {
   String selectedGenre = '';
+  // int page = 1;
+  ScrollController scrollController = ScrollController();
+  @override
+  void initState() {
+    int page =1;
+
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent ==
+          scrollController.position.pixels) {
+        BlocProvider.of<MoviesBloc>(context)
+            .add(MoviesInitialEvent(hadReachedMax: true, page: page));
+        setState(() {
+          page++;
+        });
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +78,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
+          controller: scrollController,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           children: [

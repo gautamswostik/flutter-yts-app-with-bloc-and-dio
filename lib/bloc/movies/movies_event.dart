@@ -8,7 +8,12 @@ abstract class MoviesEvent extends Equatable {
 }
 
 class MoviesInitialEvent extends MoviesEvent {
-  const MoviesInitialEvent();
+  final bool hadReachedMax;
+  final int page;
+  const MoviesInitialEvent({
+    required this.hadReachedMax,
+    required this.page,
+  });
 
   @override
   List<Object> get props => [];

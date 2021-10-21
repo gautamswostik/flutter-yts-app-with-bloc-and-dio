@@ -30,6 +30,14 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       backgroundColor: AppColor.mainColor,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.keyboard_arrow_left_sharp,
+          ),
+        ),
         title: TextFormField(
           style: const TextStyle(
             fontSize: 14.0,

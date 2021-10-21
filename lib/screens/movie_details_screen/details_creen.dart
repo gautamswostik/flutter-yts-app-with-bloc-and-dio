@@ -47,6 +47,26 @@ class _MoviesDetailState extends State<MoviesDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.mainColor,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.keyboard_arrow_left_sharp,
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          widget.movies.titleEnglish,
+          style: GoogleFonts.nunito(
+            // color: AppColor.mainColor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -58,11 +78,6 @@ class _MoviesDetailState extends State<MoviesDetail> {
             child: ListView(
               // shrinkWrap: true,
               children: [
-                AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  title: Text(widget.movies.titleEnglish),
-                ),
                 ClipRRect(
                   child: CachedNetworkImage(
                     imageUrl: widget.movies.mediumCoverImage,

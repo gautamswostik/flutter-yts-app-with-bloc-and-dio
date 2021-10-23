@@ -132,17 +132,17 @@ class _MoviesScreenState extends State<MoviesScreen> {
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(25)),
                               color: (genres[index] == selectedGenre)
-                                  ? Colors.black45
+                                  ? Colors.green
                                   : Colors.white),
                           child: Text(
                             genres[index].toUpperCase(),
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: (genres[index] == selectedGenre)
-                                    ? Colors.white
-                                    : Colors.black45,
-                                fontFamily: 'muli'),
+                            style: GoogleFonts.nunito(
+                              color: (genres[index] == selectedGenre)
+                                  ? Colors.white
+                                  : Colors.black45,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       )

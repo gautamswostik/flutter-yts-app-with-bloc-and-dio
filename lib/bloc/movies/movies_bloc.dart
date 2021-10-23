@@ -52,11 +52,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     on<MoviesByGenreEvent>(
       (event, emit) async {
         final service = MovieRepository(Dio());
-        int page = 1;
         int limit = 20;
-
-        emit(const MoviesInitial(initialMessage: 'Movies Loading...'));
-
         final moviesCollection = await service.getallMovies(
           limit: limit,
           page: page,

@@ -16,8 +16,10 @@ class MoviesScreen extends StatefulWidget {
   const MoviesScreen({
     Key? key,
     required this.movies,
+    required this.isfetching,
   }) : super(key: key);
   final List<Movies> movies;
+  final bool isfetching;
   @override
   _MoviesScreenState createState() => _MoviesScreenState();
 }
@@ -28,16 +30,11 @@ class _MoviesScreenState extends State<MoviesScreen> {
   ScrollController scrollController = ScrollController();
   @override
   void initState() {
-    int page =1;
-
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
           scrollController.position.pixels) {
-        BlocProvider.of<MoviesBloc>(context)
-            .add(MoviesInitialEvent(hadReachedMax: true, page: page));
-        setState(() {
-          page++;
-        });
+        BlocProvider.of<MoviesBloc>(context).add(
+            MoviesInitialEvent(movies: widget.movies, isInitialFetch: false));
       }
     });
     super.initState();
@@ -222,6 +219,13 @@ class _MoviesScreenState extends State<MoviesScreen> {
                 );
               },
             ).toList(),
+            widget.isfetching
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.green,
+                    ),
+                  )
+                : const SizedBox(),
           ],
         ),
       ),

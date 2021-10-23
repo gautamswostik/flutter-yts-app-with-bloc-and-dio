@@ -8,11 +8,11 @@ abstract class MoviesEvent extends Equatable {
 }
 
 class MoviesInitialEvent extends MoviesEvent {
-  final bool hadReachedMax;
-  final int page;
+  final bool isInitialFetch;
+  final List<Movies>? movies;
   const MoviesInitialEvent({
-    required this.hadReachedMax,
-    required this.page,
+    required this.isInitialFetch,
+    this.movies,
   });
 
   @override
@@ -26,3 +26,4 @@ class MoviesByGenreEvent extends MoviesEvent {
   @override
   List<Object> get props => [];
 }
+

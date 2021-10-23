@@ -10,6 +10,7 @@ part 'movies_event.dart';
 part 'movies_state.dart';
 
 class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
+  int page = 1;
   MoviesBloc() : super(const MoviesInitial(initialMessage: 'Movies Loading')) {
     on<MoviesEvent>(
       (event, emit) async {
@@ -19,10 +20,11 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     on<MoviesInitialEvent>(
       (event, emit) async {
         final service = MovieRepository(Dio());
-        int page = 1;
-        int limit = 50;
 
-        emit(const MoviesInitial(initialMessage: 'Movies Loading...'));
+        int limit = 20;
+        if (event.isInitialFetch) {
+          emit(const MoviesInitial(initialMessage: 'Movies Loading...'));
+        }
 
         final moviesCollection = await service.getallMovies(
           limit: limit,
@@ -31,17 +33,27 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
         );
         emit(
           moviesCollection.fold(
-            (l) => MoviesLoaded(l),
+            (l) {
+              List<Movies> allmovies = [
+                ...?event.movies,
+                ...l.data!.movies,
+              ];
+              return MoviesLoaded(
+                moviesCollection: allmovies,
+                isFetching: true,
+              );
+            },
             (r) => MoviesError(r),
           ),
         );
+        page++;
       },
     );
     on<MoviesByGenreEvent>(
       (event, emit) async {
         final service = MovieRepository(Dio());
         int page = 1;
-        int limit = 50;
+        int limit = 20;
 
         emit(const MoviesInitial(initialMessage: 'Movies Loading...'));
 
@@ -52,7 +64,10 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
         );
         emit(
           moviesCollection.fold(
-            (l) => MoviesLoaded(l),
+            (l) => MoviesLoaded(
+              moviesCollection: l.data!.movies,
+              isFetching: true,
+            ),
             (r) => MoviesError(r),
           ),
         );

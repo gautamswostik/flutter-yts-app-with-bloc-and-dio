@@ -17,10 +17,8 @@ class HomeSceren extends StatefulWidget {
 class _HomeScerenState extends State<HomeSceren> {
   @override
   void initState() {
-    BlocProvider.of<MoviesBloc>(context).add(const MoviesInitialEvent(
-      hadReachedMax: false,
-      page: 1,
-    ));
+    BlocProvider.of<MoviesBloc>(context)
+        .add(const MoviesInitialEvent(isInitialFetch: true));
     BlocProvider.of<MoviesuggestionsBloc>(context)
         .add(const MoviesSuggestionInitialEvent());
     super.initState();
@@ -52,16 +50,16 @@ class _HomeScerenState extends State<HomeSceren> {
             );
           }
           if (state is MoviesLoaded) {
-            return MoviesScreen(movies: state.moviesCollection.data!.movies);
+            return MoviesScreen(
+              movies: state.moviesCollection,
+              isfetching: state.isFetching,
+            );
           }
           if (state is MoviesError) {
             return CustomErrorView(
               retryFunction: (BuildContext context) {
                 BlocProvider.of<MoviesBloc>(context)
-                    .add(const MoviesInitialEvent(
-                  hadReachedMax: false,
-                  page: 1,
-                ));
+                    .add(const MoviesInitialEvent(isInitialFetch: true));
                 BlocProvider.of<MoviesuggestionsBloc>(context)
                     .add(const MoviesSuggestionInitialEvent());
               },

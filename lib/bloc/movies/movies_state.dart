@@ -17,28 +17,15 @@ class MoviesInitial extends MoviesState {
 }
 
 class MoviesLoaded extends MoviesState {
-  final MoviesCollection moviesCollection;
-
-  const MoviesLoaded(this.moviesCollection);
-
-  @override
-  List<Object> get props => [moviesCollection];
-}
-
-class MoviesPaginate extends MoviesState {
   final List<Movies> moviesCollection;
-
-  const MoviesPaginate(this.moviesCollection);
+  final bool isFetching;
+  const MoviesLoaded({
+    required this.moviesCollection,
+    this.isFetching = false,
+  });
 
   @override
   List<Object> get props => [moviesCollection];
-}
-
-class PaginationLoading extends MoviesState {
-  const PaginationLoading();
-
-  @override
-  List<Object> get props => [];
 }
 
 class MoviesError extends MoviesState {

@@ -70,12 +70,6 @@ class _HomeScerenState extends State<HomeSceren> {
         },
       ),
     );
-
-    // Scaffold(
-
-    // body:
-    //   ),
-    // );
   }
 }
 

@@ -16,20 +16,21 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider<MoviesBloc>(
-            create: (context) => MoviesBloc(),
-          ),
-          BlocProvider<MoviesuggestionsBloc>(
-            create: (context) => MoviesuggestionsBloc(),
-          ),
-          BlocProvider<SearchBloc>(
-            create: (context) => SearchBloc(),
-          ),
-        ],
-        child: const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: HomeSceren(),
-        ));
+      providers: [
+        BlocProvider<MoviesBloc>(
+          create: (context) => MoviesBloc(),
+        ),
+        BlocProvider<MoviesuggestionsBloc>(
+          create: (context) => MoviesuggestionsBloc(),
+        ),
+        BlocProvider<SearchBloc>(
+          create: (context) => SearchBloc(),
+        ),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomeSceren(),
+      ),
+    );
   }
 }

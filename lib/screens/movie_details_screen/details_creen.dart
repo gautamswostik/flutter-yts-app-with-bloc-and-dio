@@ -97,30 +97,36 @@ class _MoviesDetailState extends State<MoviesDetail> {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "Trailer".toUpperCase(),
-                      style: GoogleFonts.nunito(
-                        color: Colors.green,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                widget.movies.ytTrailerCode.isEmpty
+                    ? const SizedBox()
+                    : Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Trailer".toUpperCase(),
+                                style: GoogleFonts.nunito(
+                                  color: Colors.green,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Icon(
+                                Icons.arrow_right_sharp,
+                                size: 40,
+                                color: Colors.green,
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          YoutubePlayerIFrame(
+                            controller: _controller,
+                            aspectRatio: 16 / 9,
+                          ),
+                        ],
                       ),
-                    ),
-                    const Icon(
-                      Icons.arrow_right_sharp,
-                      size: 40,
-                      color: Colors.green,
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                YoutubePlayerIFrame(
-                  controller: _controller,
-                  aspectRatio: 16 / 9,
-                ),
                 widget.movies.genres.isEmpty
                     ? const SizedBox()
                     : Column(

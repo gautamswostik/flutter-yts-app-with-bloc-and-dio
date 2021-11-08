@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yts_bloc_2021/app/api_provider.dart';
-import 'package:yts_bloc_2021/app/failure.dart';
+import 'package:yts_bloc_2021/app/dio/api_provider.dart';
+import 'package:yts_bloc_2021/app/dio/failure.dart';
 import 'package:yts_bloc_2021/model/movies.dart';
 
 part 'moviesuggestions_event.dart';

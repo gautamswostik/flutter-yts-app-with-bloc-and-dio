@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yts_bloc_2021/app/api_provider.dart';
-import 'package:yts_bloc_2021/app/failure.dart';
+import 'package:yts_bloc_2021/app/dio/api_provider.dart';
+import 'package:yts_bloc_2021/app/dio/failure.dart';
 
 import 'package:yts_bloc_2021/model/movies.dart';
 
@@ -34,10 +34,9 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
         emit(
           moviesCollection.fold(
             (l) {
-              List<Movies> allmovies = [
-                ...?event.movies,
-                ...l.data!.movies,
-              ];
+              //b = [a , b , c] c = [d, e, f]
+              //[a] =[...b , ...b ]
+              List<Movies> allmovies = [...?event.movies, ...l.data!.movies];
               return MoviesLoaded(
                 moviesCollection: allmovies,
                 isFetching: true,
@@ -71,3 +70,4 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     );
   }
 }
+// the 

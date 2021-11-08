@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:yts_bloc_2021/app/failure.dart';
+import 'package:yts_bloc_2021/app/dio/failure.dart';
 
 import 'package:yts_bloc_2021/model/movies.dart';
 

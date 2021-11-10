@@ -17,9 +17,11 @@ class MoviesScreen extends StatefulWidget {
     Key? key,
     required this.movies,
     required this.isfetching,
+    required this.color,
   }) : super(key: key);
   final List<Movies> movies;
   final bool isfetching;
+  final Color color;
   @override
   _MoviesScreenState createState() => _MoviesScreenState();
 }
@@ -44,7 +46,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: AppColor.mainColor,
+      backgroundColor: widget.color,
       appBar: AppBar(
         title: Image.asset(
           'assets/yts.png',
@@ -69,7 +71,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
           ),
         ],
         elevation: 0.0,
-        backgroundColor: AppColor.mainColor,
+        backgroundColor: widget.color,
         centerTitle: true,
       ),
       body: Padding(
@@ -186,6 +188,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => MoviesDetail(
+                            color: widget.color,
                             movies: e,
                           ),
                         ),

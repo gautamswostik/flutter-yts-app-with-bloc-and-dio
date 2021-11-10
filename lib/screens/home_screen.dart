@@ -8,8 +8,8 @@ import 'package:yts_bloc_2021/utils/app_color.dart';
 import 'package:yts_bloc_2021/widgets/custom_error_view.dart';
 
 class HomeSceren extends StatefulWidget {
-  const HomeSceren({Key? key}) : super(key: key);
-
+  const HomeSceren({Key? key, required this.color}) : super(key: key);
+  final Color color;
   @override
   _HomeScerenState createState() => _HomeScerenState();
 }
@@ -27,7 +27,7 @@ class _HomeScerenState extends State<HomeSceren> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.mainColor,
+      backgroundColor: widget.color,
       body: BlocBuilder<MoviesBloc, MoviesState>(
         builder: (context, state) {
           if (state is MoviesInitial) {
@@ -51,6 +51,7 @@ class _HomeScerenState extends State<HomeSceren> {
           }
           if (state is MoviesLoaded) {
             return MoviesScreen(
+              color: widget.color,
               movies: state.moviesCollection,
               isfetching: state.isFetching,
             );

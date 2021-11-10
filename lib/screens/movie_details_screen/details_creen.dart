@@ -13,8 +13,10 @@ class MoviesDetail extends StatefulWidget {
   const MoviesDetail({
     Key? key,
     required this.movies,
+    this.color = AppColor.mainColor,
   }) : super(key: key);
   final Movies movies;
+  final Color color;
   @override
   _MoviesDetailState createState() => _MoviesDetailState();
 }
@@ -46,7 +48,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.mainColor,
+      backgroundColor: widget.color,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -56,7 +58,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
             Icons.keyboard_arrow_left_sharp,
           ),
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColor.mainColor,
         elevation: 0,
         title: Text(
           widget.movies.titleEnglish,

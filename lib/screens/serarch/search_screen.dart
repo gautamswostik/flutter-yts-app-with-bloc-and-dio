@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yts_bloc_2021/bloc/search/search_bloc.dart';
-import 'package:yts_bloc_2021/screens/movie_details_screen/details_creen.dart';
+import 'package:yts_bloc_2021/screens/movie_details_screen/details_screen.dart';
 import 'package:yts_bloc_2021/utils/app_color.dart';
 import 'package:yts_bloc_2021/widgets/custom_error_view.dart';
 import 'package:yts_bloc_2021/widgets/cutom_empty_widget.dart';
@@ -18,7 +18,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _controller = TextEditingController();
-
+  bool isChanged = false;
   @override
   void dispose() {
     _controller.dispose();
@@ -39,51 +39,69 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
         title: TextFormField(
-          style: const TextStyle(
-            fontSize: 14.0,
-            color: Colors.black,
+          controller: _controller,
+          style: GoogleFonts.nunito(
+            color: Colors.green,
+            fontSize: 14,
           ),
-          onFieldSubmitted: (changed) {
-            BlocProvider.of<SearchBloc>(context)
-                .add(SearchMovieEvent(movieName: changed));
-
+          onChanged: (s) {
             setState(() {
-              _controller.text = changed;
+              if (s.isNotEmpty) {
+                isChanged = true;
+              } else {
+                isChanged = false;
+              }
             });
           },
+          onFieldSubmitted: (changed) {
+            if (changed.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Please enter movie name!'),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            } else {
+              BlocProvider.of<SearchBloc>(context)
+                  .add(SearchMovieEvent(movieName: changed));
+            }
+          },
           decoration: InputDecoration(
-            floatingLabelBehavior: FloatingLabelBehavior.never,
-            filled: true,
-            fillColor: Colors.grey[100],
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.grey[100]!.withOpacity(0.3),
+            contentPadding: const EdgeInsets.symmetric(vertical: 1.0),
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.green),
+              borderRadius: BorderRadius.all(
+                Radius.circular(5),
               ),
-              borderRadius: BorderRadius.circular(30.0),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.grey[100]!.withOpacity(0.3),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.green),
+              borderRadius: BorderRadius.all(
+                Radius.circular(5),
               ),
-              borderRadius: BorderRadius.circular(30.0),
             ),
-            contentPadding: const EdgeInsets.only(
-              left: 15.0,
-              right: 10.0,
+            hintText: 'Search',
+            hintStyle: GoogleFonts.nunito(
+              color: Colors.green,
             ),
-            labelText: 'Search Movie',
-            hintStyle: const TextStyle(
-              fontSize: 14.0,
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
+            prefixIcon: const Icon(
+              Icons.search,
+              color: Colors.green,
             ),
-            labelStyle: const TextStyle(
-              fontSize: 14.0,
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
+            suffixIcon: isChanged
+                ? IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _controller.clear();
+                        isChanged = false;
+                      });
+                    },
+                    icon: const Icon(
+                      Icons.close,
+                      color: Colors.green,
+                    ))
+                : const SizedBox(),
           ),
-          autocorrect: false,
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,

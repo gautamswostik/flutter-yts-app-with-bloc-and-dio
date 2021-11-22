@@ -33,7 +33,10 @@
 
 # Web related
 lib/generated_plugin_registrant.dart
-
+# some designs from roshan
+lib/desugn.txt
+lib/design2.txt
+lib/design1.txt
 # Symbolication related
 app.*.symbols
 

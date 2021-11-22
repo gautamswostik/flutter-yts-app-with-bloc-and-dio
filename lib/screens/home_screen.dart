@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:yts_bloc_2021/bloc/movie_suggestions/moviesuggestions_bloc.dart';
 import 'package:yts_bloc_2021/bloc/movies/movies_bloc.dart';
 import 'package:yts_bloc_2021/screens/movies_screen/movies_screen.dart';
-import 'package:yts_bloc_2021/utils/app_color.dart';
 import 'package:yts_bloc_2021/widgets/custom_error_view.dart';
 
 class HomeSceren extends StatefulWidget {
@@ -73,7 +72,12 @@ class _HomeScerenState extends State<HomeSceren> {
     );
   }
 }
-
+//! useful widget
+// Flexible(
+//                     child: Text(
+//                   'Processing, please wait!',
+//                   textAlign: TextAlign.center,
+//                 ))
 ///////
 //! You can use bloc consumer instead of builder to show some extra shits whem the state ore evnet is called
 // BlocConsumer<BeerBloc, BeerState>(

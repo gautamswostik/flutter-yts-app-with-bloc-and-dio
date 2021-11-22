@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:yts_bloc_2021/app/dio/api_provider.dart';
 import 'package:yts_bloc_2021/app/dio/failure.dart';
-
 import 'package:yts_bloc_2021/model/movies.dart';
 
 part 'movies_event.dart';
@@ -70,4 +69,3 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     );
   }
 }
-// the 

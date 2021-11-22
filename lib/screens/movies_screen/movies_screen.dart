@@ -6,7 +6,7 @@ import 'package:yts_bloc_2021/bloc/movie_suggestions/moviesuggestions_bloc.dart'
 import 'package:yts_bloc_2021/bloc/movies/movies_bloc.dart';
 import 'package:yts_bloc_2021/bloc/search/search_bloc.dart';
 import 'package:yts_bloc_2021/model/movies.dart';
-import 'package:yts_bloc_2021/screens/movie_details_screen/details_creen.dart';
+import 'package:yts_bloc_2021/screens/movie_details_screen/details_screen.dart';
 import 'package:yts_bloc_2021/screens/movies_screen/movie_suggersion_slider.dart';
 import 'package:yts_bloc_2021/screens/serarch/search_screen.dart';
 import 'package:yts_bloc_2021/utils/app_color.dart';
@@ -47,6 +47,22 @@ class _MoviesScreenState extends State<MoviesScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: widget.color,
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.green,
+          child: const Icon(Icons.arrow_upward),
+          onPressed: () {
+            if (scrollController.offset == 0) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('You already at the top'),
+                  // backgroundColor: Colors.purple,
+                ),
+              );
+            } else {
+              scrollController.animateTo(0,
+                  duration: const Duration(seconds: 1), curve: Curves.easeOut);
+            }
+          }),
       appBar: AppBar(
         title: Image.asset(
           'assets/yts.png',
@@ -79,7 +95,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
         child: ListView(
           controller: scrollController,
           shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
           children: [
             BlocBuilder<MoviesuggestionsBloc, MoviesuggestionsState>(
               builder: (context, state) {

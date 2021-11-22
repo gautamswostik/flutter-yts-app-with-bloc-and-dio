@@ -31,6 +31,10 @@ class _AppState extends State<App> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         color: widget.config.appcolor,
+        theme: ThemeData(
+          //! change color while dragging scrollview
+          colorScheme: ColorScheme.fromSwatch(accentColor: Colors.green),
+        ),
         home: HomeSceren(
           color: widget.config.appcolor,
         ),

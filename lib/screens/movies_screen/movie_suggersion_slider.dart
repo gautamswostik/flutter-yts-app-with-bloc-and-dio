@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yts_bloc_2021/model/movies.dart';
-import 'package:yts_bloc_2021/screens/movie_details_screen/details_creen.dart';
+import 'package:yts_bloc_2021/screens/movie_details_screen/details_screen.dart';
 
 class MovieImageSlider extends StatefulWidget {
   const MovieImageSlider({

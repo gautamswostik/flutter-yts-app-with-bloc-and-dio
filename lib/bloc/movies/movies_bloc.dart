@@ -35,7 +35,10 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
             (l) {
               //b = [a , b , c] c = [d, e, f]
               //[a] =[...b , ...b ]
-              List<Movies> allmovies = [...?event.movies, ...l.data!.movies];
+              List<Movies> allmovies = [
+                ...?event.movies,
+                ...l.data?.movies ?? []
+              ];
               return MoviesLoaded(
                 moviesCollection: allmovies,
                 isFetching: true,

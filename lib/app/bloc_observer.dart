@@ -10,7 +10,7 @@ class MoviesBlocObserver extends BlocObserver {
   }
 
   @override
-  void onError(BlocBase bloc, Object error, StackTrace stacktrace) {
+  void onError(BlocBase bloc, Object error,  stacktrace) {
     log('$error, $stacktrace');
     super.onError(bloc, error, stacktrace);
   }

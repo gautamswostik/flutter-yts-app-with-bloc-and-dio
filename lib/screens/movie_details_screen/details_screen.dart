@@ -68,6 +68,15 @@ class _MoviesDetailState extends State<MoviesDetail> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: const [
+          IconButton(
+            onPressed: null,
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.green,
+            ),
+          ),
+        ],
       ),
       body: Stack(
         fit: StackFit.expand,

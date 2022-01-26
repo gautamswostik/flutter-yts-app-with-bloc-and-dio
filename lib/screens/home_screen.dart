@@ -13,6 +13,8 @@ class HomeSceren extends StatefulWidget {
   _HomeScerenState createState() => _HomeScerenState();
 }
 
+//! this skips all the widgets in squre brackets
+//  if (isBydReplenishment)...[],
 class _HomeScerenState extends State<HomeSceren> {
   @override
   void initState() {

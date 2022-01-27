@@ -2,10 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:yts_bloc_2021/bloc/movie_suggestions/moviesuggestions_bloc.dart';
-import 'package:yts_bloc_2021/bloc/movies/movies_bloc.dart';
-import 'package:yts_bloc_2021/bloc/search/search_bloc.dart';
-import 'package:yts_bloc_2021/model/movies.dart';
+import 'package:yts_bloc_2021/application/movie_suggestions/moviesuggestions_bloc.dart';
+import 'package:yts_bloc_2021/application/movies/movies_bloc.dart';
+import 'package:yts_bloc_2021/application/search/search_bloc.dart';
+
+import 'package:yts_bloc_2021/infrastructure/yts/entities/movies.dart';
 import 'package:yts_bloc_2021/screens/movie_details_screen/details_screen.dart';
 import 'package:yts_bloc_2021/screens/movies_screen/movie_suggersion_slider.dart';
 import 'package:yts_bloc_2021/screens/serarch/search_screen.dart';

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yts_bloc_2021/app/dio/api_provider.dart';
-import 'package:yts_bloc_2021/app/dio/failure.dart';
-import 'package:yts_bloc_2021/model/movies.dart';
+import 'package:yts_bloc_2021/application/core/entities/failure.dart';
+import 'package:yts_bloc_2021/infrastructure/yts/yts_repo.dart';
+import 'package:yts_bloc_2021/infrastructure/yts/entities/movies.dart';
 
 part 'moviesuggestions_event.dart';
 part 'moviesuggestions_state.dart';
@@ -19,7 +19,7 @@ class MoviesuggestionsBloc
 
     on<MoviesSuggestionInitialEvent>(
       (event, emit) async {
-        final service = MovieRepository(Dio());
+        final service = MovieRepository();
         int movieId = 1;
         Future.delayed(const Duration(minutes: 1), () {
           movieId++;

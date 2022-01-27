@@ -2,15 +2,13 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:yts_bloc_2021/app/dio/failure.dart';
+import 'package:yts_bloc_2021/application/core/entities/failure.dart';
+import 'package:yts_bloc_2021/app_setup/dio/dio_client.dart';
+import 'package:yts_bloc_2021/application/core/service/api_endpoints.dart';
 
-import 'package:yts_bloc_2021/model/movies.dart';
+import 'package:yts_bloc_2021/infrastructure/yts/entities/movies.dart';
 
 abstract class IMovieRepositiry {
-  final Dio dio;
-
-  IMovieRepositiry(this.dio);
-
   Future<Either<MoviesCollection, Failure>> getallMovies(
       {required int limit, required int page, required String genre});
 
@@ -22,7 +20,7 @@ abstract class IMovieRepositiry {
 }
 
 class MovieRepository extends IMovieRepositiry {
-  MovieRepository(Dio dio) : super(dio);
+  Dio get dio => DioClient().dioClient();
 
   @override
   Future<Either<MoviesCollection, Failure>> getallMovies({
@@ -32,7 +30,7 @@ class MovieRepository extends IMovieRepositiry {
   }) async {
     try {
       final response = await dio.get<Map<String, dynamic>>(
-        'https://yts.mx/api/v2/list_movies.json',
+        YtsEp.allMovies,
         queryParameters: {
           'limit': limit,
           'page': page,
@@ -58,10 +56,11 @@ class MovieRepository extends IMovieRepositiry {
   }) async {
     try {
       final response = await dio.get<Map<String, dynamic>>(
-          'https://yts.mx/api/v2/movie_suggestions.json',
-          queryParameters: {
-            'movie_id': movieId,
-          });
+        YtsEp.suggestions,
+        queryParameters: {
+          'movie_id': movieId,
+        },
+      );
       log('$response');
       final json = Map<String, dynamic>.from(response.data!);
       final data = MoviesCollection.fromJson(json);
@@ -81,10 +80,11 @@ class MovieRepository extends IMovieRepositiry {
   }) async {
     try {
       final response = await dio.get<Map<String, dynamic>>(
-          'https://yts.mx/api/v2/list_movies.json',
-          queryParameters: {
-            'query_term': moviname,
-          });
+        YtsEp.searchMovie,
+        queryParameters: {
+          'query_term': moviname,
+        },
+      );
       log('$response');
       final json = Map<String, dynamic>.from(response.data!);
       final data = MoviesCollection.fromJson(json);

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yts_bloc_2021/app/dio/api_provider.dart';
-import 'package:yts_bloc_2021/app/dio/failure.dart';
-import 'package:yts_bloc_2021/model/movies.dart';
+import 'package:yts_bloc_2021/application/core/entities/failure.dart';
+import 'package:yts_bloc_2021/infrastructure/yts/yts_repo.dart';
+import 'package:yts_bloc_2021/infrastructure/yts/entities/movies.dart';
 
 part 'movies_event.dart';
 part 'movies_state.dart';
@@ -18,7 +18,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     );
     on<MoviesInitialEvent>(
       (event, emit) async {
-        final service = MovieRepository(Dio());
+        final service = MovieRepository();
 
         int limit = 20;
         if (event.isInitialFetch) {
@@ -52,7 +52,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     );
     on<MoviesByGenreEvent>(
       (event, emit) async {
-        final service = MovieRepository(Dio());
+        final service = MovieRepository();
         int limit = 20;
         final moviesCollection = await service.getallMovies(
           limit: limit,

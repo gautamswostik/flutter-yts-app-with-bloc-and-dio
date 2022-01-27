@@ -5,7 +5,7 @@ import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-import 'package:yts_bloc_2021/model/movies.dart';
+import 'package:yts_bloc_2021/infrastructure/yts/entities/movies.dart';
 import 'package:yts_bloc_2021/screens/movie_details_screen/movies_backdrop.dart';
 import 'package:yts_bloc_2021/utils/app_color.dart';
 

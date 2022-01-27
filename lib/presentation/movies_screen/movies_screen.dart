@@ -7,9 +7,9 @@ import 'package:yts_bloc_2021/application/movies/movies_bloc.dart';
 import 'package:yts_bloc_2021/application/search/search_bloc.dart';
 
 import 'package:yts_bloc_2021/infrastructure/yts/entities/movies.dart';
-import 'package:yts_bloc_2021/screens/movie_details_screen/details_screen.dart';
-import 'package:yts_bloc_2021/screens/movies_screen/movie_suggersion_slider.dart';
-import 'package:yts_bloc_2021/screens/serarch/search_screen.dart';
+import 'package:yts_bloc_2021/presentation/movie_details_screen/details_screen.dart';
+import 'package:yts_bloc_2021/presentation/movies_screen/movie_suggersion_slider.dart';
+import 'package:yts_bloc_2021/presentation/serarch/search_screen.dart';
 import 'package:yts_bloc_2021/utils/genres.dart';
 
 class MoviesScreen extends StatefulWidget {

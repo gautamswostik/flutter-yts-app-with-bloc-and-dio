@@ -4,7 +4,7 @@ import 'package:yts_bloc_2021/application/movie_suggestions/moviesuggestions_blo
 import 'package:yts_bloc_2021/application/movies/movies_bloc.dart';
 import 'package:yts_bloc_2021/application/search/search_bloc.dart';
 import 'package:yts_bloc_2021/flavor_config.dart';
-import 'package:yts_bloc_2021/screens/home_screen.dart';
+import 'package:yts_bloc_2021/presentation/home_screen.dart';
 
 class App extends StatefulWidget {
   const App({Key? key, required this.config}) : super(key: key);

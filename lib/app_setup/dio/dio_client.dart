@@ -12,7 +12,7 @@ class DioClient {
     _dio.options.connectTimeout = 6000;
     _dio.options.receiveTimeout = 6000;
     _dio.options.contentType = Headers.jsonContentType;
-    _dio.options.extra = <String, Object>{requiredToken: true};
+    _dio.options.extra = <String, Object>{requiredToken: false};
     _dio.interceptors.addAll([
       ResponseInterceptor(),
       ErrorInterceptor(),

@@ -9,18 +9,23 @@ import 'package:yts_bloc_2021/application/core/service/api_endpoints.dart';
 import 'package:yts_bloc_2021/infrastructure/yts/entities/movies.dart';
 
 abstract class IMovieRepositiry {
-  Future<Either<MoviesCollection, Failure>> getallMovies(
-      {required int limit, required int page, required String genre});
+  Future<Either<MoviesCollection, Failure>> getallMovies({
+    required int limit,
+    required int page,
+    required String genre,
+  });
 
-  Future<Either<MoviesCollection, Failure>> getMoviesSuggestions(
-      {required int movieId});
+  Future<Either<MoviesCollection, Failure>> getMoviesSuggestions({
+    required int movieId,
+  });
 
-  Future<Either<MoviesCollection, Failure>> searchMovie(
-      {required String moviname});
+  Future<Either<MoviesCollection, Failure>> searchMovie({
+    required String moviname,
+  });
 }
 
 class MovieRepository extends IMovieRepositiry {
-  Dio get dio => DioClient().dioClient();
+  Dio get _dio => DioClient().dioClient();
 
   @override
   Future<Either<MoviesCollection, Failure>> getallMovies({
@@ -29,8 +34,8 @@ class MovieRepository extends IMovieRepositiry {
     required String genre,
   }) async {
     try {
-      final response = await dio.get<Map<String, dynamic>>(
-        YtsEp.allMovies,
+      final response = await _dio.get<Map<String, dynamic>>(
+        YtsEndPoints.allMovies,
         queryParameters: {
           'limit': limit,
           'page': page,
@@ -55,8 +60,8 @@ class MovieRepository extends IMovieRepositiry {
     required int movieId,
   }) async {
     try {
-      final response = await dio.get<Map<String, dynamic>>(
-        YtsEp.suggestions,
+      final response = await _dio.get<Map<String, dynamic>>(
+        YtsEndPoints.suggestions,
         queryParameters: {
           'movie_id': movieId,
         },
@@ -79,8 +84,8 @@ class MovieRepository extends IMovieRepositiry {
     required String moviname,
   }) async {
     try {
-      final response = await dio.get<Map<String, dynamic>>(
-        YtsEp.searchMovie,
+      final response = await _dio.get<Map<String, dynamic>>(
+        YtsEndPoints.searchMovie,
         queryParameters: {
           'query_term': moviname,
         },

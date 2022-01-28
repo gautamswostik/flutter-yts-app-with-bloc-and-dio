@@ -8,6 +8,8 @@ import 'package:yts_bloc_2021/flavor_config.dart';
 
 void mainCommon(FlavorConfig config) async {
   WidgetsFlutterBinding.ensureInitialized();
+  await HiveSetup.initHive();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   BlocOverrides.runZoned(
     () {
@@ -20,7 +22,4 @@ void mainCommon(FlavorConfig config) async {
     },
     blocObserver: MoviesBlocObserver(),
   );
-  await HiveSetup.initHive();
-
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 }

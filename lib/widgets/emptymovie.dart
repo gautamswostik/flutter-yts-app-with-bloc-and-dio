@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomEmptyMovieView extends StatelessWidget {
-  ///
-
   const CustomEmptyMovieView({
     Key? key,
+    required this.message,
   }) : super(key: key);
 
+  final String message;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -27,7 +27,7 @@ class CustomEmptyMovieView extends StatelessWidget {
             height: 30,
           ),
           Text(
-            'Movie not found',
+            message,
             textAlign: TextAlign.center,
             style: GoogleFonts.nunito(
               color: Colors.white,

@@ -7,8 +7,9 @@ import 'package:yts_bloc_2021/application/movies/movies_bloc.dart';
 import 'package:yts_bloc_2021/application/search/search_bloc.dart';
 
 import 'package:yts_bloc_2021/infrastructure/yts/entities/movies.dart';
+import 'package:yts_bloc_2021/presentation/fav_movies/fav_movies.dart';
 import 'package:yts_bloc_2021/presentation/movie_details_screen/details_screen.dart';
-import 'package:yts_bloc_2021/presentation/movies_screen/movie_suggersion_slider.dart';
+import 'package:yts_bloc_2021/presentation/movies_screen/movie_suggestion_slider.dart';
 import 'package:yts_bloc_2021/presentation/serarch/search_screen.dart';
 import 'package:yts_bloc_2021/utils/genres.dart';
 
@@ -68,6 +69,20 @@ class _MoviesScreenState extends State<MoviesScreen> {
           'assets/yts.png',
           height: 100,
           width: 100,
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FavMoviesScreen(),
+              ),
+            );
+          },
+          icon: const Icon(
+            Icons.favorite,
+            color: Colors.green,
+          ),
         ),
         actions: [
           IconButton(
@@ -204,7 +219,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                           MaterialPageRoute(
                             builder: (context) => MoviesDetail(
                               color: widget.color,
-                              movies: e,
+                              movie: e,
                             ),
                           ),
                         );

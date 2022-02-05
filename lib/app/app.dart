@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yts_bloc_2021/application/fav_movies/fav_movies_bloc.dart';
 import 'package:yts_bloc_2021/application/movie_suggestions/moviesuggestions_bloc.dart';
 import 'package:yts_bloc_2021/application/movies/movies_bloc.dart';
 import 'package:yts_bloc_2021/application/search/search_bloc.dart';
@@ -26,6 +27,9 @@ class _AppState extends State<App> {
         ),
         BlocProvider<SearchBloc>(
           create: (context) => SearchBloc(),
+        ),
+        BlocProvider<FavMoviesBloc>(
+          create: (context) => FavMoviesBloc(),
         ),
       ],
       child: MaterialApp(

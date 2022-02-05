@@ -27,7 +27,7 @@ class _MovieImageSliderState extends State<MovieImageSlider> {
               context,
               MaterialPageRoute(
                 builder: (context) => MoviesDetail(
-                  movies: widget.movies[index],
+                  movie: widget.movies[index],
                 ),
               ),
             );

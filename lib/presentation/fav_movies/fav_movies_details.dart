@@ -9,30 +9,29 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:yts_bloc_2021/application/fav_movies/fav_movies_bloc.dart';
 import 'package:yts_bloc_2021/infrastructure/favourite/entities/fav_movies_entites.dart';
 import 'package:yts_bloc_2021/infrastructure/favourite/entities/fav_torrent.dart';
-import 'package:yts_bloc_2021/infrastructure/yts/entities/movies.dart';
 import 'package:yts_bloc_2021/presentation/movie_details_screen/movies_backdrop.dart';
 import 'package:yts_bloc_2021/utils/app_color.dart';
 
-class MoviesDetail extends StatefulWidget {
-  const MoviesDetail({
+class FavMovieDetailScreen extends StatefulWidget {
+  const FavMovieDetailScreen({
     Key? key,
     required this.movie,
     this.color = AppColor.mainColor,
   }) : super(key: key);
-  final Movies movie;
+  final FavMovies movie;
   final Color color;
   @override
-  _MoviesDetailState createState() => _MoviesDetailState();
+  _FavMovieScreenState createState() => _FavMovieScreenState();
 }
 
-class _MoviesDetailState extends State<MoviesDetail> {
+class _FavMovieScreenState extends State<FavMovieDetailScreen> {
   late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: widget.movie.ytTrailerCode,
+      initialVideoId: widget.movie.ytcode,
       params: const YoutubePlayerParams(
         autoPlay: false,
         showControls: true,
@@ -61,7 +60,8 @@ class _MoviesDetailState extends State<MoviesDetail> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            BlocProvider.of<FavMoviesBloc>(context).add(const GetFavMovies());
+            Navigator.of(context).pop();
           },
           icon: const Icon(
             Icons.keyboard_arrow_left_sharp,
@@ -70,7 +70,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
         backgroundColor: AppColor.mainColor,
         elevation: 0,
         title: Text(
-          widget.movie.titleEnglish,
+          widget.movie.title,
           style: GoogleFonts.nunito(
             // color: AppColor.mainColor,
             fontSize: 18,
@@ -112,13 +112,13 @@ class _MoviesDetailState extends State<MoviesDetail> {
                       SaveMovie(
                         movie: FavMovies(
                           id: widget.movie.id,
-                          title: widget.movie.titleEnglish,
+                          title: widget.movie.title,
                           rating: widget.movie.rating,
-                          description: widget.movie.descriptionFull,
-                          imdbcode: widget.movie.imdbCode,
-                          posterBackground: widget.movie.mediumCoverImage,
-                          poster: widget.movie.mediumCoverImage,
-                          ytcode: widget.movie.ytTrailerCode,
+                          description: widget.movie.description,
+                          imdbcode: widget.movie.imdbcode,
+                          posterBackground: widget.movie.posterBackground,
+                          poster: widget.movie.poster,
+                          ytcode: widget.movie.ytcode,
                           largeCoverImage: widget.movie.largeCoverImage,
                           torrents: widget.movie.torrents
                               .map(
@@ -155,7 +155,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
         fit: StackFit.expand,
         children: [
           DetailsScreen(
-            moviesCOverImage: widget.movie.mediumCoverImage,
+            moviesCOverImage: widget.movie.posterBackground,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -164,7 +164,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
               children: [
                 ClipRRect(
                   child: CachedNetworkImage(
-                    imageUrl: widget.movie.mediumCoverImage,
+                    imageUrl: widget.movie.poster,
                     placeholder: (context, url) => const Center(
                         child: SizedBox(
                             height: 50,
@@ -181,7 +181,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
                 const SizedBox(
                   height: 10,
                 ),
-                widget.movie.ytTrailerCode.isEmpty
+                widget.movie.ytcode.isEmpty
                     ? const SizedBox()
                     : Column(
                         children: [
@@ -278,7 +278,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
                 const SizedBox(
                   height: 10,
                 ),
-                widget.movie.descriptionFull.isNotEmpty
+                widget.movie.description.isNotEmpty
                     ? Column(
                         children: [
                           Row(
@@ -302,7 +302,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
                             height: 10,
                           ),
                           Text(
-                            widget.movie.descriptionFull,
+                            widget.movie.description,
                             style: GoogleFonts.nunito(
                               color: Colors.white,
                               fontSize: 18,
@@ -362,7 +362,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
                       onTap: () {
                         _launchURL(
                           context,
-                          'https://www.imdb.com/title/${widget.movie.imdbCode}/',
+                          'https://www.imdb.com/title/${widget.movie.imdbcode}/',
                           AppColor.imdbColor,
                         );
                       },

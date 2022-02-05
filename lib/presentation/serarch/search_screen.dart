@@ -131,7 +131,9 @@ class _SearchScreenState extends State<SearchScreen> {
         }
         if (state is SearchLoaded) {
           if (state.moviesCollection.data!.movieCount == 0) {
-            return const CustomEmptyMovieView();
+            return const CustomEmptyMovieView(
+              message: 'Movie not found',
+            );
           } else {
             return ListView.builder(
               itemCount: state.moviesCollection.data!.movies.length,
@@ -152,7 +154,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => MoviesDetail(
-                                movies: e,
+                                movie: e,
                               ),
                             ),
                           );

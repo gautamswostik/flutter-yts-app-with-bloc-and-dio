@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yts_bloc_2021/application/movie_suggestions/moviesuggestions_bloc.dart';
 import 'package:yts_bloc_2021/application/movies/movies_bloc.dart';
+import 'package:yts_bloc_2021/infrastructure/favourite/entities/fav_movies_entites.dart';
+import 'package:yts_bloc_2021/infrastructure/favourite/entities/fav_torrent.dart';
 import 'package:yts_bloc_2021/presentation/movies_screen/movies_screen.dart';
 import 'package:yts_bloc_2021/widgets/custom_error_view.dart';
 
@@ -18,6 +21,8 @@ class HomeSceren extends StatefulWidget {
 class _HomeScerenState extends State<HomeSceren> {
   @override
   void initState() {
+    Hive.registerAdapter(FavMoviesAdapter());
+    Hive.registerAdapter(TorrentLocalAdapter());
     BlocProvider.of<MoviesBloc>(context)
         .add(const MoviesInitialEvent(isInitialFetch: true));
     BlocProvider.of<MoviesuggestionsBloc>(context)

@@ -181,206 +181,6 @@ class _MoviesDetailState extends State<MoviesDetail> {
                 const SizedBox(
                   height: 10,
                 ),
-                widget.movie.ytTrailerCode.isEmpty
-                    ? const SizedBox()
-                    : Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Trailer".toUpperCase(),
-                                style: GoogleFonts.nunito(
-                                  color: Colors.green,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.arrow_right_sharp,
-                                size: 40,
-                                color: Colors.green,
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          YoutubePlayerIFrame(
-                            controller: _controller,
-                            aspectRatio: 16 / 9,
-                          ),
-                        ],
-                      ),
-                widget.movie.genres.isEmpty
-                    ? const SizedBox()
-                    : Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Genres".toUpperCase(),
-                                style: GoogleFonts.nunito(
-                                  color: Colors.green,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.arrow_right_sharp,
-                                size: 40,
-                                color: Colors.green,
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            height: 45,
-                            child: ListView.separated(
-                              separatorBuilder:
-                                  (BuildContext context, int index) =>
-                                      const VerticalDivider(
-                                color: Colors.transparent,
-                                width: 5,
-                              ),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: widget.movie.genres.length,
-                              itemBuilder: (context, index) {
-                                return Column(
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black45),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(25)),
-                                        color: Colors.white,
-                                      ),
-                                      child: Text(
-                                        widget.movie.genres[index]
-                                            .toUpperCase(),
-                                        style: GoogleFonts.nunito(
-                                          color: AppColor.mainColor,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                const SizedBox(
-                  height: 10,
-                ),
-                widget.movie.descriptionFull.isNotEmpty
-                    ? Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Description".toUpperCase(),
-                                style: GoogleFonts.nunito(
-                                  color: Colors.green,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.arrow_right_sharp,
-                                size: 40,
-                                color: Colors.green,
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            widget.movie.descriptionFull,
-                            style: GoogleFonts.nunito(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      )
-                    : const SizedBox(),
-                Row(
-                  children: [
-                    Text(
-                      "Rating".toUpperCase(),
-                      style: GoogleFonts.nunito(
-                        color: Colors.green,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const Icon(
-                      Icons.arrow_right_sharp,
-                      size: 40,
-                      color: Colors.green,
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          FontAwesomeIcons.imdb,
-                          size: 25.0,
-                          color: Colors.yellow,
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          widget.movie.rating.toString() + ' / 10',
-                          style: GoogleFonts.nunito(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    InkWell(
-                      onTap: () {
-                        _launchURL(
-                          context,
-                          'https://www.imdb.com/title/${widget.movie.imdbCode}/',
-                          AppColor.imdbColor,
-                        );
-                      },
-                      child: Text(
-                        'Check IMDB'.toUpperCase(),
-                        style: GoogleFonts.nunito(
-                          decoration: TextDecoration.underline,
-                          color: Colors.green,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -585,6 +385,212 @@ class _MoviesDetailState extends State<MoviesDetail> {
                     ],
                   );
                 }).toList(),
+                const SizedBox(
+                  height: 10,
+                ),
+                widget.movie.ytTrailerCode.isEmpty
+                    ? const SizedBox()
+                    : Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Trailer".toUpperCase(),
+                                style: GoogleFonts.nunito(
+                                  color: Colors.green,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Icon(
+                                Icons.arrow_right_sharp,
+                                size: 40,
+                                color: Colors.green,
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          YoutubePlayerIFrame(
+                            controller: _controller,
+                            aspectRatio: 16 / 9,
+                          ),
+                        ],
+                      ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Rating".toUpperCase(),
+                      style: GoogleFonts.nunito(
+                        color: Colors.green,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Icon(
+                      Icons.arrow_right_sharp,
+                      size: 40,
+                      color: Colors.green,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(
+                          FontAwesomeIcons.imdb,
+                          size: 25.0,
+                          color: Colors.yellow,
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          widget.movie.rating.toString() + ' / 10',
+                          style: GoogleFonts.nunito(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    InkWell(
+                      onTap: () {
+                        _launchURL(
+                          context,
+                          'https://www.imdb.com/title/${widget.movie.imdbCode}/',
+                          AppColor.imdbColor,
+                        );
+                      },
+                      child: Text(
+                        'Check IMDB'.toUpperCase(),
+                        style: GoogleFonts.nunito(
+                          decoration: TextDecoration.underline,
+                          color: Colors.green,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                widget.movie.genres.isEmpty
+                    ? const SizedBox()
+                    : Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Genres".toUpperCase(),
+                                style: GoogleFonts.nunito(
+                                  color: Colors.green,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Icon(
+                                Icons.arrow_right_sharp,
+                                size: 40,
+                                color: Colors.green,
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            height: 45,
+                            child: ListView.separated(
+                              separatorBuilder:
+                                  (BuildContext context, int index) =>
+                                      const VerticalDivider(
+                                color: Colors.transparent,
+                                width: 5,
+                              ),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: widget.movie.genres.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        border:
+                                            Border.all(color: Colors.black45),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(25)),
+                                        color: Colors.white,
+                                      ),
+                                      child: Text(
+                                        widget.movie.genres[index]
+                                            .toUpperCase(),
+                                        style: GoogleFonts.nunito(
+                                          color: AppColor.mainColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                const SizedBox(
+                  height: 10,
+                ),
+                widget.movie.descriptionFull.isNotEmpty
+                    ? Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Description".toUpperCase(),
+                                style: GoogleFonts.nunito(
+                                  color: Colors.green,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Icon(
+                                Icons.arrow_right_sharp,
+                                size: 40,
+                                color: Colors.green,
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            widget.movie.descriptionFull,
+                            style: GoogleFonts.nunito(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
               ],
             ),
           ),

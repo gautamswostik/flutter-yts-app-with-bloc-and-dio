@@ -12,6 +12,7 @@ import 'package:yts_bloc_2021/infrastructure/favourite/entities/fav_torrent.dart
 import 'package:yts_bloc_2021/presentation/movie_details_screen/movies_backdrop.dart';
 import 'package:yts_bloc_2021/utils/app_color.dart';
 
+// ! Can make this screen generic for both api and local data will just leave it as is for now
 class FavMovieDetailScreen extends StatefulWidget {
   const FavMovieDetailScreen({
     Key? key,
@@ -55,9 +56,11 @@ class _FavMovieScreenState extends State<FavMovieDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // !no need for will pop scope beacause issue fixed by making new bloc
+    // !But will just keep it here for future reference
     return WillPopScope(
       onWillPop: () async {
-        BlocProvider.of<FavMoviesBloc>(context).add(const GetFavMovies());
+        // BlocProvider.of<FavMoviesBloc>(context).add(const GetFavMovies());
         Navigator.pop(context, true);
         return false;
       },
@@ -66,8 +69,7 @@ class _FavMovieScreenState extends State<FavMovieDetailScreen> {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              BlocProvider.of<FavMoviesBloc>(context).add(const GetFavMovies());
-              Navigator.of(context).pop();
+              Navigator.pop(context);
             },
             icon: const Icon(
               Icons.keyboard_arrow_left_sharp,

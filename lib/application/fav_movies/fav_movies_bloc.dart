@@ -47,21 +47,6 @@ class FavMoviesBloc extends Bloc<FavMoviesEvent, FavMoviesState> {
       },
     );
 
-    on<GetFavMovies>(
-      (event, emit) async {
-        emit(FavMoviesLoading());
-        final favMovies = await _favMoviesRepo.getMovies();
-
-        favMovies.fold(
-          (movies) => emit(
-            FavMoviesLoaded(favMovies: movies),
-          ),
-          (error) => emit(
-            SomeError(message: error),
-          ),
-        );
-      },
-    );
     on<DeleteFavMovie>(
       (event, emit) async {
         emit(FavMoviesLoading());

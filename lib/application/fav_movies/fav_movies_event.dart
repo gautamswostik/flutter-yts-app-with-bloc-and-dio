@@ -25,13 +25,6 @@ class SaveMovie extends FavMoviesEvent {
   List<Object> get props => [movie];
 }
 
-class GetFavMovies extends FavMoviesEvent {
-  const GetFavMovies();
-
-  @override
-  List<Object> get props => [];
-}
-
 class DeleteFavMovie extends FavMoviesEvent {
   const DeleteFavMovie({required this.movieId});
   final num movieId;

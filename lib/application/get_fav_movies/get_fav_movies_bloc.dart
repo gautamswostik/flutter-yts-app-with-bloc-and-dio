@@ -28,5 +28,19 @@ class GetFavMoviesBloc extends Bloc<GetFavMoviesEvent, GetFavMoviesState> {
         );
       },
     );
+    on<DeleteMovies>(
+      (event, emit) async {
+        final favMovies = await _favMoviesRepo.deleteAll();
+
+        favMovies.fold(
+          (success) {
+            emit(const DeletedAllMovies());
+          },
+          (error) => emit(
+            Err(message: error),
+          ),
+        );
+      },
+    );
   }
 }

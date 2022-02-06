@@ -16,6 +16,13 @@ class FavMoviesLoaded extends GetFavMoviesState {
   List<Object> get props => [favMovies];
 }
 
+class DeletedAllMovies extends GetFavMoviesState {
+  const DeletedAllMovies();
+
+  @override
+  List<Object> get props => [];
+}
+
 class Err extends GetFavMoviesState {
   const Err({required this.message});
   final String message;

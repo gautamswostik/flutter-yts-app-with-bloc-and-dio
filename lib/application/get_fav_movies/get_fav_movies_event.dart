@@ -13,3 +13,10 @@ class GetFavMovies extends GetFavMoviesEvent {
   @override
   List<Object> get props => [];
 }
+
+class DeleteMovies extends GetFavMoviesEvent {
+  const DeleteMovies();
+
+  @override
+  List<Object> get props => [];
+}

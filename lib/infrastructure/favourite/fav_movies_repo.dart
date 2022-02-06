@@ -11,6 +11,8 @@ abstract class IFavouriteMovies {
   Future<bool> isMovieSaved({required num movieId});
 
   Future<Either<Unit, String>> delete({required num movieId});
+
+  Future<Either<Unit, String>> deleteAll();
 }
 
 class FavouriteMovies extends IFavouriteMovies {
@@ -49,6 +51,18 @@ class FavouriteMovies extends IFavouriteMovies {
     try {
       final favMovie = await Hive.openBox<FavMovies>(HiveBox.moviesBox);
       await favMovie.delete(movieId);
+      return const Left(unit);
+    } catch (e) {
+      return Right(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<Unit, String>> deleteAll() async {
+    try {
+      for (final box in HiveBox.hiveBoxes) {
+        await Hive.deleteBoxFromDisk(box);
+      }
       return const Left(unit);
     } catch (e) {
       return Right(e.toString());

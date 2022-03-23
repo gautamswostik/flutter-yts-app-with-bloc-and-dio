@@ -208,6 +208,7 @@ class _MoviesDetailState extends State<MoviesDetail> {
                           YoutubePlayerIFrame(
                             controller: _controller,
                             aspectRatio: 16 / 9,
+                            gestureRecognizers: {},
                           ),
                         ],
                       ),

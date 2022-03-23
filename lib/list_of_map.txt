@@ -1,0 +1,73 @@
+For this JSOn
+[
+    {
+        "id": 458,
+        "title": "Mobile App Development"
+    },
+    {
+        "id": 603,
+        "title": "UI"
+    },
+    {
+        "id": 604,
+        "title": "UI"
+    },
+    {
+        "id": 605,
+        "title": "UI"
+    }
+]
+
+The freezed model can be
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'user_kra.freezed.dart';
+part 'user_kra.g.dart';
+
+
+@freezed
+class StaffKra with _$StaffKra {
+  const factory StaffKra({
+    @Default(-1) int id,
+    @Default('') String title,
+  }) = _StaffKra;
+
+  factory StaffKra.fromJson(Map<String, dynamic> json) =>
+      _$StaffKraFromJson(json);
+}
+
+which returns a list of StaffKra
+
+whic can be parsed by using dio like this
+
+  @override
+  Future<Either<List<StaffKra>, Failure>> getKra(
+      {required int staffId, CancelToken? cancelToken}) async {
+    try {
+      final param = {
+        'staff_id': staffId,
+      };
+      final resp = await _dio.post(
+        StaffEP.kra,
+        data: param,
+        cancelToken: cancelToken,
+      );
+      log(resp.toString());
+      List<StaffKra> list = [];
+      // for (var item in resp.data) {
+      //   list = item;
+      // }
+      resp.data.forEach((element) {
+        list.add(StaffKra.fromJson(element));
+      });
+      // final ola = UserKra.fromJson(list);
+      // final List<UserKra> list = [];
+      return Left(list);
+    } on DioError catch (e) {
+      return Right(e.toFailure);
+    } catch (e) {
+      return Right(Failure.fromException(e));
+    }
+  }
+
+  This is very important might be handy in Future

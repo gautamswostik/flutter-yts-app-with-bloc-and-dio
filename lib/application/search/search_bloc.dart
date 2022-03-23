@@ -23,16 +23,16 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       (event, emit) async {
         final service = MovieRepository();
 
-        emit(const SearchLoading(message: 'Searching ...'));
+          emit(const SearchLoading(message: 'Searching ...'));
 
-        final moviesCollection =
-            await service.searchMovie(moviname: event.movieName);
-        emit(
-          moviesCollection.fold(
-            (l) => SearchLoaded(l),
-            (r) => SearchError(r),
-          ),
-        );
+          final moviesCollection =
+              await service.searchMovie(moviname: event.movieName);
+          emit(
+            moviesCollection.fold(
+              (l) => SearchLoaded(l),
+              (r) => SearchError(r),
+            ),
+          );
       },
     );
   }

@@ -20,6 +20,6 @@ void mainCommon(FlavorConfig config) async {
       );
       BlocOverrides.current;
     },
-    blocObserver: MoviesBlocObserver(),
+    blocObserver: MovieBlocObserver(),
   );
 }

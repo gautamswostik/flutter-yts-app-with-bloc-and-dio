@@ -44,3 +44,4 @@ class GetFavMoviesBloc extends Bloc<GetFavMoviesEvent, GetFavMoviesState> {
     );
   }
 }
+

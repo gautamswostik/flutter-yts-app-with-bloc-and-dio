@@ -10,9 +10,7 @@ class GetFavMoviesBloc extends Bloc<GetFavMoviesEvent, GetFavMoviesState> {
   FavouriteMovies get _favMoviesRepo => FavouriteMovies();
   GetFavMoviesBloc() : super(GetFavMoviesInitial()) {
     on<GetFavMoviesEvent>(
-      (event, emit) {
-        // TODO: implement event handler
-      },
+      (event, emit) {},
     );
     on<GetFavMovies>(
       (event, emit) async {
@@ -44,4 +42,3 @@ class GetFavMoviesBloc extends Bloc<GetFavMoviesEvent, GetFavMoviesState> {
     );
   }
 }
-

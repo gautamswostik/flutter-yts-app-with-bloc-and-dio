@@ -8,11 +8,10 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
+  MovieRepository get service => MovieRepository();
   SearchBloc() : super(const SearchInitial()) {
     on<SearchEvent>(
-      (event, emit) {
-        // TODO: implement event handler
-      },
+      (event, emit) {},
     );
 
     on<SearchInitialEvent>(
@@ -21,18 +20,16 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     on<SearchMovieEvent>(
       (event, emit) async {
-        final service = MovieRepository();
+        emit(const SearchLoading(message: 'Searching ...'));
 
-          emit(const SearchLoading(message: 'Searching ...'));
-
-          final moviesCollection =
-              await service.searchMovie(moviname: event.movieName);
-          emit(
-            moviesCollection.fold(
-              (l) => SearchLoaded(l),
-              (r) => SearchError(r),
-            ),
-          );
+        final moviesCollection =
+            await service.searchMovie(moviname: event.movieName);
+        emit(
+          moviesCollection.fold(
+            (l) => SearchLoaded(l),
+            (r) => SearchError(r),
+          ),
+        );
       },
     );
   }

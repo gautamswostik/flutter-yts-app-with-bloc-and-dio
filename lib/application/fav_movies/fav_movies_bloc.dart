@@ -9,9 +9,7 @@ part 'fav_movies_state.dart';
 class FavMoviesBloc extends Bloc<FavMoviesEvent, FavMoviesState> {
   FavouriteMovies get _favMoviesRepo => FavouriteMovies();
   FavMoviesBloc() : super(FavMoviesInitial()) {
-    on<FavMoviesEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<FavMoviesEvent>((event, emit) {});
 
     on<IsFavMovie>(
       (event, emit) async {

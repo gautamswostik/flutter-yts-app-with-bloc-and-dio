@@ -7,14 +7,15 @@ part 'get_fav_movies_event.dart';
 part 'get_fav_movies_state.dart';
 
 class GetFavMoviesBloc extends Bloc<GetFavMoviesEvent, GetFavMoviesState> {
-  FavouriteMovies get _favMoviesRepo => FavouriteMovies();
-  GetFavMoviesBloc() : super(GetFavMoviesInitial()) {
+  FavouriteMoviesRepository favMoviesRepo;
+  GetFavMoviesBloc({required this.favMoviesRepo})
+      : super(GetFavMoviesInitial()) {
     on<GetFavMoviesEvent>(
       (event, emit) {},
     );
     on<GetFavMovies>(
       (event, emit) async {
-        final favMovies = await _favMoviesRepo.getMovies();
+        final favMovies = await favMoviesRepo.getMovies();
 
         favMovies.fold(
           (movies) => emit(
@@ -28,7 +29,7 @@ class GetFavMoviesBloc extends Bloc<GetFavMoviesEvent, GetFavMoviesState> {
     );
     on<DeleteMovies>(
       (event, emit) async {
-        final favMovies = await _favMoviesRepo.deleteAll();
+        final favMovies = await favMoviesRepo.deleteAll();
 
         favMovies.fold(
           (success) {

@@ -8,8 +8,8 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  MovieRepository get service => MovieRepository();
-  SearchBloc() : super(const SearchInitial()) {
+  MovieRepository service;
+  SearchBloc({required this.service}) : super(const SearchInitial()) {
     on<SearchEvent>(
       (event, emit) {},
     );

@@ -9,8 +9,8 @@ part 'moviesuggestions_state.dart';
 
 class MoviesuggestionsBloc
     extends Bloc<MoviesuggestionsEvent, MoviesuggestionsState> {
-  MovieRepository get service => MovieRepository();
-  MoviesuggestionsBloc()
+  MovieRepository service;
+  MoviesuggestionsBloc({required this.service})
       : super(const MoviesuggestionsInitial(
             initialMessage: 'Suggestions Loading')) {
     on<MoviesuggestionsEvent>((event, emit) {});
@@ -18,9 +18,7 @@ class MoviesuggestionsBloc
     on<MoviesSuggestionInitialEvent>(
       (event, emit) async {
         int movieId = 1;
-        Future.delayed(const Duration(minutes: 1), () {
-          movieId++;
-        });
+
         emit(const MoviesuggestionsInitial(
             initialMessage: 'Suggestions Loading...'));
 

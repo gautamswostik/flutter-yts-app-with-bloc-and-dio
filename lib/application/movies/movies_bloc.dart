@@ -8,21 +8,22 @@ part 'movies_event.dart';
 part 'movies_state.dart';
 
 class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
-  MovieRepository get service => MovieRepository();
+  MovieRepository service;
   int page = 1;
-  MoviesBloc() : super(const MoviesInitial(initialMessage: 'Movies Loading')) {
+  MoviesBloc({required this.service})
+      : super(const MoviesInitial(initialMessage: 'Movies Loading')) {
     on<MoviesEvent>(
       (event, emit) async {},
     );
     on<MoviesInitialEvent>(
       (event, emit) async {
-        int limit = 20;
         if (event.isInitialFetch) {
           emit(const MoviesInitial(initialMessage: 'Movies Loading...'));
+          page = 1;
         }
 
         final moviesCollection = await service.getallMovies(
-          limit: limit,
+          limit: 20,
           page: page,
           genre: 'all',
         );

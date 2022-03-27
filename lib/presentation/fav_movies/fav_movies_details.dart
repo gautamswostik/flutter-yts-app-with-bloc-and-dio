@@ -386,6 +386,7 @@ class _FavMovieScreenState extends State<FavMovieDetailScreen> {
                             YoutubePlayerIFrame(
                               controller: _controller,
                               aspectRatio: 16 / 9,
+                              gestureRecognizers: const {},
                             ),
                           ],
                         ),

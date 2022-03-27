@@ -6,6 +6,8 @@ import 'package:yts_bloc_2021/application/movie_suggestions/moviesuggestions_blo
 import 'package:yts_bloc_2021/application/movies/movies_bloc.dart';
 import 'package:yts_bloc_2021/application/search/search_bloc.dart';
 import 'package:yts_bloc_2021/flavor_config.dart';
+import 'package:yts_bloc_2021/infrastructure/favourite/fav_movies_repo.dart';
+import 'package:yts_bloc_2021/infrastructure/yts/yts_repo.dart';
 import 'package:yts_bloc_2021/presentation/home_screen.dart';
 
 class App extends StatefulWidget {
@@ -16,24 +18,26 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  MovieRepository service = MovieRepository();
+  FavouriteMoviesRepository favMoviesRepo = FavouriteMoviesRepository();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<MoviesBloc>(
-          create: (context) => MoviesBloc(),
+          create: (context) => MoviesBloc(service: service),
         ),
         BlocProvider<MoviesuggestionsBloc>(
-          create: (context) => MoviesuggestionsBloc(),
+          create: (context) => MoviesuggestionsBloc(service: service),
         ),
         BlocProvider<SearchBloc>(
-          create: (context) => SearchBloc(),
+          create: (context) => SearchBloc(service: service),
         ),
         BlocProvider<FavMoviesBloc>(
-          create: (context) => FavMoviesBloc(),
+          create: (context) => FavMoviesBloc(favMoviesRepo: favMoviesRepo),
         ),
         BlocProvider<GetFavMoviesBloc>(
-          create: (context) => GetFavMoviesBloc(),
+          create: (context) => GetFavMoviesBloc(favMoviesRepo: favMoviesRepo),
         ),
       ],
       child: MaterialApp(

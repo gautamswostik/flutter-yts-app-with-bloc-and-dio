@@ -15,7 +15,7 @@ abstract class IFavouriteMovies {
   Future<Either<Unit, String>> deleteAll();
 }
 
-class FavouriteMovies extends IFavouriteMovies {
+class FavouriteMoviesRepository extends IFavouriteMovies {
   @override
   Future<Either<Unit, String>> saveMovie({
     required favMovies,

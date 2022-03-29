@@ -30,9 +30,7 @@ class FavMoviesBloc extends Bloc<FavMoviesEvent, FavMoviesState> {
 
         saveMovie.fold(
           (success) {
-            emit(
-              const MovieSaved(message: 'Movie Saved'),
-            );
+            emit(const MovieSaved(message: 'Movie Saved'));
             emit(const IsFavMovieState());
           },
           (error) {
@@ -51,9 +49,7 @@ class FavMoviesBloc extends Bloc<FavMoviesEvent, FavMoviesState> {
 
         delete.fold(
           (success) {
-            emit(
-              const MovieSaved(message: 'Movie Deleted'),
-            );
+            emit(const MovieSaved(message: 'Movie Deleted'));
             emit(const NotFavMovieState());
           },
           (error) => emit(

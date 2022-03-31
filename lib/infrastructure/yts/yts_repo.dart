@@ -25,7 +25,9 @@ abstract class IMovieRepositiry {
 }
 
 class MovieRepository extends IMovieRepositiry {
-  Dio get _dio => DioClient().dioClient();
+  MovieRepository({required this.dioClient});
+  final DioClient dioClient;
+  Dio get _dio => dioClient.dioClient();
 
   @override
   Future<Either<MoviesCollection, Failure>> getallMovies({

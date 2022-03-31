@@ -1,4 +1,5 @@
 import 'package:mockito/annotations.dart';
+import 'package:yts_bloc_2021/app_setup/dio/dio_client.dart';
 import 'package:yts_bloc_2021/application/core/entities/failure.dart';
 import 'package:yts_bloc_2021/application/fav_movies/fav_movies_bloc.dart';
 import 'package:yts_bloc_2021/application/get_fav_movies/get_fav_movies_bloc.dart';
@@ -26,5 +27,6 @@ import 'package:yts_bloc_2021/infrastructure/yts/yts_repo.dart';
   FavMovies,
   // Entities
   Failure,
+  DioClient,
 ])
 void main() {}

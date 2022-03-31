@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yts_bloc_2021/app_setup/dio/dio_client.dart';
 import 'package:yts_bloc_2021/application/fav_movies/fav_movies_bloc.dart';
 import 'package:yts_bloc_2021/application/get_fav_movies/get_fav_movies_bloc.dart';
 import 'package:yts_bloc_2021/application/movie_suggestions/moviesuggestions_bloc.dart';
@@ -18,7 +19,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  MovieRepository service = MovieRepository();
+  MovieRepository service = MovieRepository(dioClient: DioClient());
   FavouriteMoviesRepository favMoviesRepo = FavouriteMoviesRepository();
   @override
   Widget build(BuildContext context) {

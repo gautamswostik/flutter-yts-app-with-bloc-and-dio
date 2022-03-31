@@ -4,7 +4,7 @@ import 'package:yts_bloc_2021/app_setup/hive/hive_box.dart';
 import 'package:yts_bloc_2021/infrastructure/favourite/entities/fav_movies_entites.dart';
 
 abstract class IFavouriteMovies {
-  Future<Either<Unit, String>> saveMovie({required favMovies});
+  Future<Either<Unit, String>> saveMovie({required FavMovies favMovies});
 
   Future<Either<List<FavMovies>, String>> getMovies();
 
@@ -18,7 +18,7 @@ abstract class IFavouriteMovies {
 class FavouriteMoviesRepository extends IFavouriteMovies {
   @override
   Future<Either<Unit, String>> saveMovie({
-    required favMovies,
+    required FavMovies favMovies,
   }) async {
     try {
       final favMovie = await Hive.openBox<FavMovies>(HiveBox.moviesBox);

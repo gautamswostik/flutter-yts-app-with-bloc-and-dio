@@ -29,14 +29,16 @@ class CustomErrorView extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          OutlineButton(
-            textColor: Colors.white,
-            child: const Text('Retry'),
-            borderSide: const BorderSide(
-              color: Colors.green,
-              style: BorderStyle.solid,
-              width: 1,
+          OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              primary: Colors.white,
+              side: const BorderSide(
+                color: Colors.green,
+                style: BorderStyle.solid,
+                width: 1,
+              ),
             ),
+            child: const Text('Retry'),
             onPressed: () {
               retryFunction?.call(context);
             },
